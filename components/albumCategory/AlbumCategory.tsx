@@ -60,6 +60,7 @@ export const AlbumCategory = (props: AlbumCategoryProps) => {
         renderItem={_renderItem}
         keyExtractor={(item) => item.id}
         horizontal
+        showsHorizontalScrollIndicator={false}
       />
     </View>
   );

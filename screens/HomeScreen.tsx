@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { RootTabScreenProps } from "../types";
 import { styles } from "./HomeScreen.styles";
 import { Album } from "../components/album/album";
@@ -6,6 +6,7 @@ import {
   AlbumCategory,
   testAlbumCategory,
 } from "../components/albumCategory/AlbumCategory";
+import { default as albumCategoriesData } from "../assets/data/albumCategoriesData";
 
 const testAlbum = {
   id: "2",
@@ -14,26 +15,20 @@ const testAlbum = {
   artistsHeadline: "Post Malone, Drake, Eminem",
 };
 
+const _renderItem = ({ item }) => {
+  return <AlbumCategory id={item.id} title={item.title} albums={item.albums} />;
+};
+
 export default function HomeScreen({
   navigation,
 }: RootTabScreenProps<"TabOne">) {
   return (
     <View style={styles.container}>
-      {/* <Album
-        id={testAlbum.id}
-        imageUri={testAlbum.imageUri}
-        artistsHeadline={testAlbum.artistsHeadline}
-      /> */}
-      <AlbumCategory
-        id={testAlbumCategory.id}
-        title={testAlbumCategory.title}
-        albums={testAlbumCategory.albums}
-      />
-      <AlbumCategory
-        id={testAlbumCategory.id}
-        title={testAlbumCategory.title}
-        albums={testAlbumCategory.albums}
-      />
+      <FlatList
+        data={albumCategoriesData}
+        renderItem={_renderItem}
+        keyExtractor={(item) => item.id}
+      ></FlatList>
     </View>
   );
 }

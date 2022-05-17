@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     width: 125,
     // borderColor: "yellow",
     // borderWidth: 1,
-    marginRight: 10,
+    marginRight: 14,
   },
   cover: {
     width: "100%",
