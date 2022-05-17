@@ -1,8 +1,11 @@
 import { Text, View } from "react-native";
-import EditScreenInfo from "../components/EditScreenInfo";
 import { RootTabScreenProps } from "../types";
 import { styles } from "./HomeScreen.styles";
-import Album from "../components/album/album";
+import { Album } from "../components/album/album";
+import {
+  AlbumCategory,
+  testAlbumCategory,
+} from "../components/albumCategory/AlbumCategory";
 
 const testAlbum = {
   id: "2",
@@ -16,8 +19,21 @@ export default function HomeScreen({
 }: RootTabScreenProps<"TabOne">) {
   return (
     <View style={styles.container}>
-      <Album album={testAlbum} />
-      {/* <EditScreenInfo path="/screens/HomeScreen.tsx" /> */}
+      {/* <Album
+        id={testAlbum.id}
+        imageUri={testAlbum.imageUri}
+        artistsHeadline={testAlbum.artistsHeadline}
+      /> */}
+      <AlbumCategory
+        id={testAlbumCategory.id}
+        title={testAlbumCategory.title}
+        albums={testAlbumCategory.albums}
+      />
+      <AlbumCategory
+        id={testAlbumCategory.id}
+        title={testAlbumCategory.title}
+        albums={testAlbumCategory.albums}
+      />
     </View>
   );
 }

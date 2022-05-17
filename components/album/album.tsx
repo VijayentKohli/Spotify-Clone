@@ -3,26 +3,19 @@ import { Image, View, Text } from "react-native";
 import { styles } from "./album.styles";
 
 export interface AlbumProps {
-  album: {
-    id: string;
-    imageUri: string;
-    title?: string;
-    artistsHeadline: string;
-  };
+  id: string;
+  imageUri: string;
+  artistsHeadline: string;
+  title?: string;
 }
 
-const Album = (props: AlbumProps) => {
+export const Album = (props: AlbumProps) => {
   return (
     <View style={styles.container}>
       {/* Image of album */}
-      <Image
-        style={styles.cover}
-        source={{ uri: props.album.imageUri }}
-      ></Image>
+      <Image style={styles.cover} source={{ uri: props.imageUri }}></Image>
       {/* Artists */}
-      <Text style={styles.text}>{props.album.artistsHeadline}</Text>
+      <Text style={styles.text}>{props.artistsHeadline}</Text>
     </View>
   );
 };
-
-export default Album;
