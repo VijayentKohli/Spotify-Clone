@@ -4,6 +4,7 @@
  *
  */
 import {
+  Entypo,
   EvilIcons,
   FontAwesome,
   MaterialCommunityIcons,
@@ -22,7 +23,6 @@ import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import TabOneScreen from "../screens/HomeScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
 import {
   RootStackParamList,
@@ -30,6 +30,9 @@ import {
   RootTabScreenProps,
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
+import HomeScreen from "../screens/HomeScreen";
+import { AlbumScreen } from "../screens/AlbumScreen";
+import PlayerWidget from "../components/PlayerWidget/PlayerWidget";
 
 export default function Navigation({
   colorScheme,
@@ -42,6 +45,7 @@ export default function Navigation({
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
       <RootNavigator />
+      <PlayerWidget />
     </NavigationContainer>
   );
 }
@@ -54,7 +58,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
@@ -89,27 +93,18 @@ function BottomTabNavigator() {
       }}
     >
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
-          title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate("Modal")}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
+        name="Home"
+        component={TabOneNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Entypo
+              name="home"
+              size={30}
+              style={{ marginBottom: -3 }}
+              color={color}
+            />
           ),
-        })}
+        }}
       />
       <BottomTab.Screen
         name="Search"
@@ -157,6 +152,24 @@ function BottomTabNavigator() {
         }}
       />
     </BottomTab.Navigator>
+  );
+}
+
+const TabOneStack = createNativeStackNavigator<TabOneParamList>();
+function TabOneNavigator() {
+  return (
+    <TabOneStack.Navigator>
+      <TabOneStack.Screen
+        name="TabOneScreen"
+        component={HomeScreen}
+        options={{ headerTitle: "HomeNavigator" }}
+      />
+      <TabOneStack.Screen
+        name="AlbumScreen"
+        component={AlbumScreen}
+        options={{ headerTitle: "Album" }}
+      />
+    </TabOneStack.Navigator>
   );
 }
 
