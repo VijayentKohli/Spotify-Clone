@@ -3,7 +3,7 @@ import Colors from "../../constants/Colors";
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
+    flexDirection: "column",
     width: "100%",
     position: "absolute",
     bottom: 78,
@@ -46,6 +46,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     width: 70,
     justifyContent: "space-around",
+  },
+
+  progress: {
+    height: 4,
+    backgroundColor: "white",
+  },
+  rowContainer: {
+    flexDirection: "row",
+    width: "100%",
+    // borderColor: "green",
+    // borderWidth: 1,
   },
 });
 

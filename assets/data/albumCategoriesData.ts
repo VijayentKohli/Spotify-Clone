@@ -1,7 +1,7 @@
 export default [
   {
     id: "1",
-    title: "Happy Vibes",
+    title: "Recently Played",
     albums: [
       {
         id: "1",
@@ -31,7 +31,7 @@ export default [
   },
   {
     id: "2",
-    title: "Popular Playlists",
+    title: "More for you",
     albums: [
       {
         id: "6",
